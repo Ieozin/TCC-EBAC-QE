@@ -15,7 +15,7 @@ exports.config = {
       "appium:deviceName": "emulator-5554",
       "appium:platformVersion": "13.0",
       "appium:automationName": "UiAutomator2",
-      "appium:app": require('path').join(process.cwd(), './Mobile/App/loja-ebac.apk'), 
+      "appium:app": require('path').join(process.cwd(), './Mobile/App/loja-ebac.apk'),
       "appium:appPackage": "com.woocommerce.android",
       "appium:appActivity": "com.woocommerce.android.ui.login.LoginActivity",
       "appium:autoGrantPermissions": true, 

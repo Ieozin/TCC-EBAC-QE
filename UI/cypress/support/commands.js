@@ -1,4 +1,5 @@
 import LoginPage from "./pageObjects/LoginPage";
+import ProdutosPage from "./pageObjects/ProdutosPage";
 const loginPage = new LoginPage();
 
 Cypress.Commands.add("login", (usuario, senha) => {
