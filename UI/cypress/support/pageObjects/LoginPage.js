@@ -4,37 +4,38 @@ class LoginPage {
   }
 
   fillEmailLogin(email) {
-    cy.get("#username").type(email);
+    cy.get("#username").clear().type(email);
   }
 
   fillPasswordLogin(password) {
-    cy.get("#password").type(password, { log: false });
+    cy.get("#password").clear().type(password, { log: false });
   }
 
   clickLogin() {
-    cy.get('input[name="login"]').click();
+    cy.get(".woocommerce-form > .button").click();
   }
 
-  fillEmailRegister(email) {
-    cy.get("#reg_email").type(email);
+  getWelcomeMessage(nomeUsuarioOuEmail) {
+    const nomeBase = nomeUsuarioOuEmail.includes("@")
+      ? nomeUsuarioOuEmail.split("@")[0]
+      : nomeUsuarioOuEmail;
+
+    cy.get(".woocommerce-MyAccount-content > :nth-child(2)", { timeout: 10000 })
+      .should("contain.text", `Olá, ${nomeBase}`)
+      .and("contain.text", `(não é ${nomeBase}? Sair)`);
   }
 
-  fillPasswordRegister(password) {
-    cy.get("#reg_password").type(password, { log: false });
+  getGenericErrorMessageElement() {
+    return cy.get(".woocommerce-error > li", { timeout: 7000 });
   }
 
-  clickRegister() {
-    cy.get('input[name="register"]').click();
+  getDirectErrorMessageElement() {
+    return cy.get(".woocommerce-error", { timeout: 7000 });
   }
 
-  getWelcomeMessage(userName) {
-    return cy
-      .get(".woocommerce-MyAccount-content")
-      .should("contain.text", `Olá, ${userName}`);
-  }
-
-  getErrorMessage() {
-    return cy.get(".woocommerce-error > li");
+  clearLoginFields() {
+    cy.get("#username").clear().should("have.value", "");
+    cy.get("#password").clear().should("have.value", "");
   }
 }
-export default new LoginPage();
+export default LoginPage;

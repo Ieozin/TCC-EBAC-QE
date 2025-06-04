@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "cy:open": "npx cypress open --project ./UI",
-    "cy:run": "npx cypress run --project ./UI --browser chrome",
+    "cy:run": "npx cypress run --project ./UI",
     "cy:report": "npx mochawesome-merge UI/cypress/reports/mochawesome/*.json > UI/cypress/reports/report.json && npx marge UI/cypress/reports/report.json -f report -o UI/cypress/reports --inline",
     "test:ui": "npm run cy:run && npm run cy:report",
     "test:api": "npx mocha API/tests/**/*.test.js --timeout 10000",

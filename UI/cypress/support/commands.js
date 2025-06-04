@@ -3,17 +3,17 @@ import ProdutosPage from "./pageObjects/ProdutosPage";
 const loginPage = new LoginPage();
 
 Cypress.Commands.add("login", (usuario, senha) => {
-  loginPage.visit();
-  loginPage.fillEmailLogin(usuario);
-  loginPage.fillPasswordLogin(senha);
-  loginPage.clickLogin();
+  cy.visit("minha-conta/");
+  cy.get("#username").clear().type(usuario);
+  cy.get("#password").clear().type(senha, { log: false });
+  cy.get(".woocommerce-form > .button").click();
 });
 
 Cypress.Commands.add("preCadastro", (email, senha, nome, sobrenome) => {
-  loginPage.visit();
-  loginPage.fillEmailRegister(email);
-  loginPage.fillPasswordRegister(senha);
-  loginPage.clickRegister();
+  cy.visit("minha-conta/");
+  cy.get("#reg_email").type(email);
+  cy.get("#reg_password").type(senha, { log: false });
+  cy.get('input[name="register"]').click();
 
   cy.get(".woocommerce-MyAccount-navigation-link--edit-account > a").click();
   cy.get("#account_first_name").type(nome);
