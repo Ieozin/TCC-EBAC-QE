@@ -1,4 +1,3 @@
-// L:\Repositorio\TCC-EBAC-QE\API\tests\produtos.test.js
 const request = require("supertest");
 const { expect } = require("chai");
 const { getAuthToken, BASE_URL_API_EXEMPLO } = require("../utils/authHelper");

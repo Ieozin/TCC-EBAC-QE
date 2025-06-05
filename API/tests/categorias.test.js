@@ -1,7 +1,7 @@
 const request = require("supertest");
 const { expect } = require("chai");
 const { getAuthToken, BASE_URL_API_EXEMPLO } = require("../utils/authHelper");
-const { faker } = require("@faker-js/faker"); // Para dados dinâmicos se precisar
+const { faker } = require("@faker-js/faker");
 
 describe("API Exemplo - Testes de Categorias", () => {
   let token;
@@ -15,7 +15,7 @@ describe("API Exemplo - Testes de Categorias", () => {
     const categoryName = `Categoria Supertest ${faker.commerce.department()}`;
     const categoryData = {
       name: categoryName,
-      photo: faker.image.urlPlaceholder(),
+      photo: faker.image.url(),
     };
 
     const response = await request(BASE_URL_API_EXEMPLO)
@@ -38,7 +38,7 @@ describe("API Exemplo - Testes de Categorias", () => {
     const response = await request(BASE_URL_API_EXEMPLO)
       .put(`/api/editCategory/${categoryId}`)
       .set("Authorization", `${token}`)
-      .send({ name: updatedCategoryName, photo: faker.image.urlPlaceholder() });
+      .send({ name: updatedCategoryName, photo: faker.image.url() });
 
     expect(response.status).to.equal(200);
     expect(response.body.success).to.be.true;
