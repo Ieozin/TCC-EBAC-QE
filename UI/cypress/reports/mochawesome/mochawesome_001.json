@@ -1,0 +1,182 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 4,
+    "pending": 1,
+    "failures": 0,
+    "start": "2025-06-05T22:35:24.848Z",
+    "end": "2025-06-05T22:35:35.775Z",
+    "duration": 10927,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 20,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d5041e7b-c0f7-4698-8384-a7793202f1c7",
+      "title": "",
+      "fullFile": "cypress\\e2e\\login.cy.js",
+      "file": "cypress\\e2e\\login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fdaa6b69-afff-4e26-bff8-353aa6d38760",
+          "title": "[US-0002] Funcionalidade: Login na Plataforma (TCC)",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "CT_US0002_01: Deve fazer login com sucesso usando credenciais válidas do TCC",
+              "fullTitle": "[US-0002] Funcionalidade: Login na Plataforma (TCC) CT_US0002_01: Deve fazer login com sucesso usando credenciais válidas do TCC",
+              "timedOut": null,
+              "duration": 5150,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.fillEmailLogin(perfilData.usuario);\nloginPage.fillPasswordLogin(perfilData.senha);\nloginPage.clickLogin();\nconst nomeExibicaoEsperado = perfilData.nomeExibicao || perfilData.usuario.split(\"@\")[0];\nloginPage.getWelcomeMessage(nomeExibicaoEsperado);",
+              "err": {},
+              "uuid": "d131521d-8c0c-4133-939b-e26c35d64314",
+              "parentUUID": "fdaa6b69-afff-4e26-bff8-353aa6d38760",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "CT_US0002_02: Deve exibir mensagem de erro ao inserir senha inválida",
+              "fullTitle": "[US-0002] Funcionalidade: Login na Plataforma (TCC) CT_US0002_02: Deve exibir mensagem de erro ao inserir senha inválida",
+              "timedOut": null,
+              "duration": 2071,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "loginPage.fillEmailLogin(perfilData.usuario);\nloginPage.fillPasswordLogin(_faker.faker.internet.password(10));\nloginPage.clickLogin();\nloginPage.getDirectErrorMessageElement().should(\"contain.text\", `Erro: A senha fornecida para o e-mail ${perfilData.usuario} está incorreta.`).and(\"contain.text\", \"Perdeu a senha?\");",
+              "err": {},
+              "uuid": "675fdc87-3dcb-47ec-ae31-a4a4b1ac5b3a",
+              "parentUUID": "fdaa6b69-afff-4e26-bff8-353aa6d38760",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "CT_US0002_03: Deve exibir mensagem de erro ao inserir e-mail de usuário inexistente",
+              "fullTitle": "[US-0002] Funcionalidade: Login na Plataforma (TCC) CT_US0002_03: Deve exibir mensagem de erro ao inserir e-mail de usuário inexistente",
+              "timedOut": null,
+              "duration": 1810,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const emailInexistente = _faker.faker.internet.email();\nloginPage.fillEmailLogin(emailInexistente);\nloginPage.fillPasswordLogin(\"qualquerSenha\");\nloginPage.clickLogin();\nloginPage.getDirectErrorMessageElement().should(\"contain.text\", \"Endereço de e-mail desconhecido.\");",
+              "err": {},
+              "uuid": "cd7dd519-65e9-40bf-9e8e-257eda1d7551",
+              "parentUUID": "fdaa6b69-afff-4e26-bff8-353aa6d38760",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "CT_US0002_03.extra: Deve exibir mensagem de erro ao inserir NOME de usuário inválido",
+              "fullTitle": "[US-0002] Funcionalidade: Login na Plataforma (TCC) CT_US0002_03.extra: Deve exibir mensagem de erro ao inserir NOME de usuário inválido",
+              "timedOut": null,
+              "duration": 1822,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nomeUsuarioInvalido = \"usuario\" + _faker.faker.string.alphanumeric(10);\nloginPage.fillEmailLogin(nomeUsuarioInvalido);\nloginPage.fillPasswordLogin(\"qualquerSenha\");\nloginPage.clickLogin();\nloginPage.getGenericErrorMessageElement().should(\"contain.text\", `Erro: O usuário ${nomeUsuarioInvalido} não está registrado neste site.`);",
+              "err": {},
+              "uuid": "af04a1b3-fc50-4eab-8471-28ba93cae66f",
+              "parentUUID": "fdaa6b69-afff-4e26-bff8-353aa6d38760",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "CT_US0002_04: [PULADO] Deve bloquear conta após múltiplas tentativas falhas",
+              "fullTitle": "[US-0002] Funcionalidade: Login na Plataforma (TCC) CT_US0002_04: [PULADO] Deve bloquear conta após múltiplas tentativas falhas",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "cy.log(\"TESTE PULADO: Funcionalidade de bloqueio de conta não implementada/observada na loja EBAC Shop.\");",
+              "err": {},
+              "uuid": "e48bad74-b618-4663-9f23-33d184fb1601",
+              "parentUUID": "fdaa6b69-afff-4e26-bff8-353aa6d38760",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d131521d-8c0c-4133-939b-e26c35d64314",
+            "675fdc87-3dcb-47ec-ae31-a4a4b1ac5b3a",
+            "cd7dd519-65e9-40bf-9e8e-257eda1d7551",
+            "af04a1b3-fc50-4eab-8471-28ba93cae66f"
+          ],
+          "failures": [],
+          "pending": [
+            "e48bad74-b618-4663-9f23-33d184fb1601"
+          ],
+          "skipped": [],
+          "duration": 10853,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

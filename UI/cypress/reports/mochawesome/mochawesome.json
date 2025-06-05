@@ -1,0 +1,162 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-06-05T22:35:13.166Z",
+    "end": "2025-06-05T22:35:22.356Z",
+    "duration": 9190,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "03923835-7af1-4cac-be59-6d0a04686726",
+      "title": "",
+      "fullFile": "cypress\\e2e\\catalogo.cy.js",
+      "file": "cypress\\e2e\\catalogo.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f1bff389-f8ee-4c65-a76c-a23dadb20eb6",
+          "title": "Funcionalidade: Catálogo de Produtos (TCC)",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "[CT_CATALOGO_01] Deve visualizar lista de produtos ao acessar a página de produtos",
+              "fullTitle": "Funcionalidade: Catálogo de Produtos (TCC) [CT_CATALOGO_01] Deve visualizar lista de produtos ao acessar a página de produtos",
+              "timedOut": null,
+              "duration": 2815,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "_ProdutosPage.default.verificarListaDeProdutosVisivel();",
+              "err": {},
+              "uuid": "5b6b44fb-bd73-477c-961e-be8a930f5f03",
+              "parentUUID": "f1bff389-f8ee-4c65-a76c-a23dadb20eb6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "[CT_CATALOGO_02] Deve buscar por um produto existente e ir para sua página",
+              "fullTitle": "Funcionalidade: Catálogo de Produtos (TCC) [CT_CATALOGO_02] Deve buscar por um produto existente e ir para sua página",
+              "timedOut": null,
+              "duration": 2564,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nomeProduto = \"Abominable Hoodie\";\n_ProdutosPage.default.buscarProduto(nomeProduto);\n_ProdutosPage.default.verificarTituloProduto(nomeProduto);",
+              "err": {},
+              "uuid": "e51021cb-087c-42a9-a769-144a944309bf",
+              "parentUUID": "f1bff389-f8ee-4c65-a76c-a23dadb20eb6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "[CT_CATALOGO_03] Deve exibir mensagem para produto inexistente após busca",
+              "fullTitle": "Funcionalidade: Catálogo de Produtos (TCC) [CT_CATALOGO_03] Deve exibir mensagem para produto inexistente após busca",
+              "timedOut": null,
+              "duration": 1393,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nomeBusca = \"cocoseco\";\n_ProdutosPage.default.buscarProduto(nomeBusca);\n_ProdutosPage.default.verificarMensagemProdutoNaoEncontrado(nomeBusca);",
+              "err": {},
+              "uuid": "ff135184-f2f8-4983-b425-ec2ab70a82de",
+              "parentUUID": "f1bff389-f8ee-4c65-a76c-a23dadb20eb6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "[CT_CATALOGO_04] Deve acessar detalhes de um produto (descrição)",
+              "fullTitle": "Funcionalidade: Catálogo de Produtos (TCC) [CT_CATALOGO_04] Deve acessar detalhes de um produto (descrição)",
+              "timedOut": null,
+              "duration": 2287,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nomeProduto = \"Ingrid Running Jacket\";\nconst textoDescricaoEsperado = \"The Ingrid Running Jacket combines sleek design\";\n_ProdutosPage.default.buscarProduto(nomeProduto);\n_ProdutosPage.default.verificarTituloProduto(nomeProduto);\ncy.get(\"#tab-description > p\", {\n  timeout: 7000\n}).should(\"contain.text\", textoDescricaoEsperado);",
+              "err": {},
+              "uuid": "a06072c8-d96c-4f40-85ea-dbf6c29fc355",
+              "parentUUID": "f1bff389-f8ee-4c65-a76c-a23dadb20eb6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5b6b44fb-bd73-477c-961e-be8a930f5f03",
+            "e51021cb-087c-42a9-a769-144a944309bf",
+            "ff135184-f2f8-4983-b425-ec2ab70a82de",
+            "a06072c8-d96c-4f40-85ea-dbf6c29fc355"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9059,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

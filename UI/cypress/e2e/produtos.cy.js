@@ -8,40 +8,46 @@ describe("[US-0001] Funcionalidade: Adicionar item ao carrinho (TCC)", () => {
 
   it("CT_US0001_01: Deve adicionar produto 'Abominable Hoodie' S/Red com sucesso", () => {
     const nomeProduto = "Abominable Hoodie";
-    const tamanho = "S"; 
-    const cor = "Red";   
+    const tamanho = "S";
+    const cor = "Red";
     const quantidade = 1;
 
     produtosPage.buscarProduto(nomeProduto);
     produtosPage.verificarTituloProduto(nomeProduto);
 
     produtosPage.selecionarTamanho(tamanho);
-    produtosPage.selecionarCor(cor); 
+    produtosPage.selecionarCor(cor);
 
-    cy.get(".single_add_to_cart_button", { timeout: 10000 }) 
-        .should("be.visible")
-        .and("not.have.class", "disabled")
-        .and("not.have.class", "wc-variation-selection-needed");
+    cy.get(".single_add_to_cart_button", { timeout: 10000 })
+      .should("be.visible")
+      .and("not.have.class", "disabled")
+      .and("not.have.class", "wc-variation-selection-needed");
 
     produtosPage.definirQuantidade(quantidade);
-    produtosPage.clicarBotaoComprar(); 
+    produtosPage.clicarBotaoComprar();
 
     produtosPage.verificarMensagemSucessoAdicionar(nomeProduto);
     produtosPage.clicarVerCarrinhoEVerificarProduto(nomeProduto, tamanho, cor);
   });
 
-  it("CT_US0001_02: Deve exibir mensagem ao tentar adicionar 'Aero Daily Fitness Tee' sem selecionar variação", () => {
-    const nomeProduto = "Aero Daily Fitness Tee"; 
+  it("CT_US0001_02: Deve exibir alerta ao tentar adicionar 'Aero Daily Fitness Tee' sem selecionar variação", () => {
+    const nomeProduto = "Aero Daily Fitness Tee";
     produtosPage.buscarProduto(nomeProduto);
     produtosPage.verificarTituloProduto(nomeProduto);
-    produtosPage.clicarBotaoComprar(); 
-    produtosPage.verificarMensagemEscolhaOpcaoProduto();
+
+    cy.on("window:alert", (str) => {
+      expect(str).to.equal(
+        "Selecione uma das opções do produto antes de adicioná-lo ao carrinho."
+      );
+    });
+
+    produtosPage.clicarBotaoComprar();
   });
 
   it("CT_US0001_03: Deve adicionar múltiplas unidades de 'Aether Gym Pant' ao carrinho", () => {
     const nomeProduto = "Aether Gym Pant";
-    const tamanho = "32"; 
-    const cor = "Blue";   
+    const tamanho = "32";
+    const cor = "Blue";
     const quantidade = 3;
 
     produtosPage.buscarProduto(nomeProduto);
@@ -51,17 +57,21 @@ describe("[US-0001] Funcionalidade: Adicionar item ao carrinho (TCC)", () => {
     produtosPage.selecionarCor(cor);
 
     cy.get(".single_add_to_cart_button", { timeout: 10000 })
-        .should("be.visible")
-        .and("not.have.class", "disabled")
-        .and("not.have.class", "wc-variation-selection-needed");
+      .should("be.visible")
+      .and("not.have.class", "disabled")
+      .and("not.have.class", "wc-variation-selection-needed");
 
     produtosPage.definirQuantidade(quantidade);
     produtosPage.clicarBotaoComprar();
 
     produtosPage.verificarMensagemSucessoAdicionar(nomeProduto);
-    
-    produtosPage.visitarPaginaCarrinho(); 
-    produtosPage.verificarProdutoNoCarrinhoComVariaçoes(nomeProduto, tamanho, cor);
+
+    produtosPage.visitarPaginaCarrinho();
+    produtosPage.verificarProdutoNoCarrinhoComVariaçoes(
+      nomeProduto,
+      tamanho,
+      cor
+    );
     cy.get(
       `.cart_item:contains("${nomeProduto}") .quantity input[type="number"]`
     ).should("have.value", quantidade.toString());
@@ -69,16 +79,16 @@ describe("[US-0001] Funcionalidade: Adicionar item ao carrinho (TCC)", () => {
 
   it("CT_US0001_04: Deve impedir adicionar 'Abominable Hoodie' fora de estoque (XS/Blue)", () => {
     const nomeProduto = "Abominable Hoodie";
-    const tamanhoForaDeEstoque = "XS"; 
-    const corForaDeEstoque = "Blue";  
+    const tamanhoForaDeEstoque = "XS";
+    const corForaDeEstoque = "Blue";
 
     produtosPage.buscarProduto(nomeProduto);
     produtosPage.verificarTituloProduto(nomeProduto);
 
     produtosPage.selecionarTamanho(tamanhoForaDeEstoque);
     produtosPage.selecionarCor(corForaDeEstoque);
-    
-    produtosPage.verificarBotaoComprarEstaDesabilitado(); 
-    produtosPage.verificarStatusForaDeEstoque(); 
+
+    produtosPage.verificarBotaoComprarEstaDesabilitado();
+    produtosPage.verificarStatusForaDeEstoque();
   });
 });
