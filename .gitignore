@@ -1,24 +1,23 @@
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json 
-lerna-debug.log*
-
-# Cypress
-cypress/videos/
+# Arquivos de log e relatórios
+logs/
+allure-results/
+cypress/reports/
 cypress/screenshots/
-cypress.env.json
+cypress/videos/
+performance-report/
+UI/cypress/reports/
+report.json
+report.html
 
-# Appium 
-*.log
-build/
+# Dependências
+node_modules/
 
-# IDEs
-.vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
+# Arquivos de ambiente
+.env
+Mobile/.env
+UI/.env
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
 *.sln
