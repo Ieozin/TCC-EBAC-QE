@@ -2,11 +2,11 @@ import { $, $$ } from "@wdio/globals";
 
 class BrowsePage {
   get searchInput() {
-    return $(`-ios predicate string:name == "searchInput"`);
+    return $(`~searchInput`);
   }
 
   get products() {
-    return $$(`-ios predicate string:name == "productDetails"`);
+    return $$(`~productDetails`);
   }
 
   async getFirstProductElement() {

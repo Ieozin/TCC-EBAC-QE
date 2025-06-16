@@ -22,10 +22,20 @@ export const config = {
     timeout: 180000,
   },
 
-  beforeTest: async function () {
-    console.log("INFO: Iniciando teste mobile...");
+  beforeEach: async function () {
+    console.log("INFO: Garantindo que o app esteja no estado inicial...");
+
+    await driver.execute("mobile: terminateApp", {
+      bundleId: "br.com.lojaebac",
+    });
+
+    await driver.execute("mobile: launchApp", {
+      bundleId: "br.com.lojaebac",
+    });
+    console.log("INFO: App reiniciado. Teste pronto para começar.");
   },
-  afterTest: async function (
+
+  afterEach: async function (
     test,
     context,
     { error, result, duration, passed, retries }
@@ -38,7 +48,6 @@ export const config = {
         console.error("ERRO: Falha ao tirar screenshot após teste: ", e);
       }
     }
-
     console.log(
       `INFO: Teste mobile finalizado: ${test.title} - Status: ${
         passed ? "PASSOU" : "FALHOU"
