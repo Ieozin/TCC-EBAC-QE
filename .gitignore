@@ -1,18 +1,18 @@
-# Arquivos de log e relatórios
-logs/
-allure-results/
-cypress/reports/
-cypress/screenshots/
-cypress/videos/
-performance-report/
-UI/cypress/reports/
-report.json
-report.html
-
 # Dependências
 node_modules/
 
-# Arquivos de ambiente
+# Arquivos de Log e Relatórios
+logs/
+allure-results/
+performance-report/
+UI/cypress/reports/
+UI/cypress/screenshots/
+UI/cypress/videos/
+report.json
+report.html
+mochawesome-report/
+
+# Arquivos de ambiente local (MUITO IMPORTANTE)
 .env
 Mobile/.env
 UI/.env
@@ -20,4 +20,7 @@ UI/.env
 # Arquivos de sistema operacional
 .DS_Store
 Thumbs.db
-*.sln
+
+# Arquivos de IDE
+.idea/
+.vscode/
