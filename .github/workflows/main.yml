@@ -1,4 +1,4 @@
-name: Cypress Tests CI
+name: EBAC Shop - Quality Assurance Pipeline
 
 on:
   push:
@@ -7,7 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  cypress-run:
+  # Job para rodar testes de UI (Cypress)
+  ui-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,17 +19,49 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Install dependencies
-        run: npm install --prefix ./UI
+      - name: Install all dependencies from root
+        run: npm install
 
       - name: Run Cypress tests
-        run: npm run test:ui --prefix ./UI
+        run: npm run test:ui
         env:
+          # Se você usar o Cypress Dashboard, mantenha o secret
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload reports
+      - name: Upload UI test reports
+        if: always() # Garante que os relatórios sejam enviados mesmo se os testes falharem
         uses: actions/upload-artifact@v3
         with:
           name: cypress-reports
           path: UI/cypress/reports
+
+  # Job para rodar testes de API (Supertest)
+  api-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install all dependencies from root
+        run: npm install
+
+      - name: Run API tests
+        run: npm run test:api
+
+  # Job para rodar testes de Performance (K6)
+  performance-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Run K6 local test
+        uses: grafana/k6-action@v0.2.0
+        with:
+          filename: Performance/scripts/ebacShopLoadTest.js
